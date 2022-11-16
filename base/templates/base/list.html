@@ -1,0 +1,117 @@
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+<style>
+
+    h3{
+        margin: 10px;
+        text-align: center;
+        font-size: 32px;
+    }
+
+    body{
+        background-color: #638CBB;
+    }
+
+    input{
+        margin-bottom: 5px;
+        box-sizing: border-box;
+    }
+
+    .submit{
+        background-color: #6BA3E8;
+    }
+
+    .center-column{
+        width: 1500px;;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+    }
+
+    .item-row{
+        background-color: #906abd;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 16px;
+        box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+    }
+
+    .btn-danger{
+        background-color: #ffae19;
+        border-color: #e59400;
+    }
+
+    .main-title{
+        color: black;
+        font-size: large;
+    }
+    
+    .setbotton{
+        margin-top: -34px;
+    }
+
+  
+</style>
+
+
+
+
+<h3>Students Registration</h3>
+<br>
+
+
+<div class="center-column">
+
+        <form method="POST" action="/">
+            {% csrf_token %} 
+            {{form}}
+            <input type="submit" name="Create Student">
+        </form>
+
+    </div>        
+
+
+
+
+<div class="item-row"> 
+  
+                        
+            <table>
+                    <thead>
+                        <th class="main-title">Student id      &nbsp&nbsp<hr></th>
+                        <th class="main-title">Student name    &nbsp&nbsp<hr></th>
+                        <th class="main-title">Email           &nbsp&nbsp<hr></th>
+                        <th class="main-title">Phone           &nbsp&nbsp<hr></th>
+                        <th class="main-title">Classes         &nbsp&nbsp<hr></th>
+                        <th class="main-title">Marks           &nbsp&nbsp<hr></th>
+                    
+                    </thead>
+                    
+
+                    {% for student in students %}
+                    <tr>
+                        
+                        <td>{{student.student_id}}             <hr></td> 
+                        <td>{{student}}                        <hr></td>
+                        <td>{{student.email}}                  <hr></td>
+                        <td>{{student.phone}}                  <hr></td>
+                        <td>{{student.classes}}                <hr></td>
+                        <td>{{student.marks}}                  <hr></td>
+                        <td>
+                            <div class="setbotton">
+                                <a class="btn btn-sm btn-info" href="{% url 'update_task' student.id %}">Update</a>
+                                <a class="btn btn-sm btn-danger" href="{% url 'delete' student.id %}">Delete</a>
+                            </div>
+                        </td>
+                        
+                    </tr>    
+                    
+                    {% endfor %}    
+            </table>
+</div>
+                            
